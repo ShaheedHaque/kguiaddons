@@ -28,12 +28,13 @@ import rules_engine
 sys.path.append(os.path.dirname(os.path.dirname(rules_engine.__file__)))
 import Qt5Ruleset
 
-def qualify_kfontutils_enum(container, function, parameter, sip, matcher):
-    sip["init"] = "KFontUtils::" + sip["init"]
+def qualify_enum_initialiser(container, function, parameter, sip, matcher):
+    """Enums in initialisers need to be fully qualified."""
+    sip["init"] = rules_engine._parents(function) + "::" + sip["init"]
 
 def local_parameter_rules():
     return [
-        ["KFontUtils", "adaptFontSize", "flags", ".*", ".*", qualify_kfontutils_enum],
+        ["KFontUtils", "adaptFontSize", "flags", ".*", ".*", qualify_enum_initialiser],
     ]
 
 class RuleSet(Qt5Ruleset.RuleSet):
