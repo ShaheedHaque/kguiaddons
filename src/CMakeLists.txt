@@ -95,6 +95,7 @@ if (PythonModuleGeneration_FOUND)
     TARGET KF5::GuiAddons
     PYTHONNAMESPACE PyKF5
     MODULENAME KGuiAddons
+    RULES_FILE "${CMAKE_SOURCE_DIR}/cmake/rules_PyKF5.py"
     SIP_DEPENDS
       QtGui/QtGuimod.sip
     HEADERS
