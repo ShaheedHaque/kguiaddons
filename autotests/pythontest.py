@@ -18,10 +18,11 @@ def main():
     kdv = KGuiAddons.KDateValidator()
     num = 0
 
-    l = QtCore.QLocale()
+    l = QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedKingdom)
+    kdv.setLocale(l)
 
     assert(kdv.validate("NotADate")[0] == QtGui.QValidator.Intermediate)
-    assert(kdv.validate("12/28/15")[0] == QtGui.QValidator.Acceptable)
+    assert(kdv.validate("28/12/2015")[0] == QtGui.QValidator.Acceptable)
 
 if __name__ == '__main__':
     sys.exit(main())
